@@ -23,6 +23,7 @@ public class ServiceRequestController extends BaseController {
     @PostMapping
     public ResponseEntity<?> createServiceRequest(@RequestBody ServiceRequest serviceRequest) {
         try {
+            if(serviceRequest.getServiceId().length()<=0) serviceRequest.setServiceId(null);
             ServiceRequest createdServiceRequest = serviceRequestService.createServiceRequest(serviceRequest);
             if (createdServiceRequest != null) {
                 return ResponseEntity.ok(createdServiceRequest);

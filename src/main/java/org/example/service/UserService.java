@@ -19,15 +19,8 @@ public class UserService {
     private PasswordEncoder passwordEncoder;
 
     public User registerNewUser(User user) {
-        user.setUserId(generateUserId());
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         return userRepository.save(user);
-    }
-
-    private String generateUserId() {
-        Random random = new Random();
-        int number = random.nextInt(9000000) + 1000000; // Ensure it's always 7 digits
-        return String.valueOf(number);
     }
 
     // Add this method

@@ -1,5 +1,7 @@
 package org.example.model;
 
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
@@ -14,6 +16,7 @@ import java.time.LocalDateTime;
 @Document
 public class ServiceRequest {
     @Id
+    @GeneratedValue (strategy = GenerationType.IDENTITY)
     private String serviceId;
 
     private String userId;
@@ -22,7 +25,7 @@ public class ServiceRequest {
     private String status; // e.g., "Pending", "In Progress", "Completed"
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
     private LocalDateTime dateSlot; // For date and time slot
-    private String vendorName; // Name of the vendor
+    private String vendorName; // Name of the ven
     private BigDecimal price; // Price decided by the vendor
     private String address; // Address for the service
 }

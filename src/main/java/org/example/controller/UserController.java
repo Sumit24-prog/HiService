@@ -1,5 +1,6 @@
 package org.example.controller;
 
+import org.example.dto.UserRegistrationResponse;
 import org.example.model.User;
 import org.example.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +18,12 @@ public class UserController extends BaseController {
     @PostMapping("/register")
     public ResponseEntity<?> registerUser(@RequestBody User user) {
         User registeredUser = userService.registerNewUser(user);
-        return ResponseEntity.ok("Registration successful. Your customer ID is " + registeredUser.getUserId());
+        UserRegistrationResponse response = new UserRegistrationResponse(
+                registeredUser.getUserId(),
+                registeredUser.getEmail(),
+                "Registration successful."
+        );
+        return ResponseEntity.ok(response);
     }
 
 }
